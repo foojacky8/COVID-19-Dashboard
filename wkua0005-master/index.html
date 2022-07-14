@@ -1,0 +1,265 @@
+<!-- 
+ * HTML for dashboard
+ * 
+ * @author Jacky Foo <jfoo0016@student.monash.edu>
+ * @author Kuan Wai Shuet <wkua0005@student.monash.edu>
+ * Reference: candraKriswinarto's Firebase Realtime Database for Web 
+ *            https://github.com/candraKriswinarto/firestore-crud
+ *
+*             Responsive Admin Dashboard Panel HTML And CSS
+ *            https://www.youtube.com/watch?v=4WvT2cmuZ5M 
+ * 
+ * Created at     : 2021-09-05 02:30
+ * Last modified  : 2021-09-20 20:00  
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
+    <title>Dashboard</title>
+
+    <!-- Line awesome link -->
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+
+    <!-- CSS file link -->
+    <link rel="stylesheet" href="css/dashboard-panel.css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+</head>
+
+<body>
+
+    <input type="checkbox" name="" id="sidebar-toggle">
+
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-flex">
+                <img src="image/paimon.png" alt="paimon logo">
+
+                <div class="brand-icons">
+                    <span class="las la-sign-out-alt" id="sign-out-btn"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar-main">
+            <div class="sidebar-user">
+                <img src="image/keqing.jpg" alt="keqing image">
+                <div>
+                    <h3 id=username></h3>
+                    <span id=email></span>
+                </div>
+            </div>
+
+            <div class="sidebar-menu">
+                <div class="menu-head">
+                    <span>Dashboard</span>
+                </div>
+
+                <ul>
+                    <li>
+                        <a href="">
+                            <span class="las la-chart-pie"></span>
+                            Analytics
+                        </a>
+                    </li>
+                    <li id="registered_users" style="display: none">
+                        <a href="newadmin.html">
+                            <span class="las la-user"></span>
+                            Registered Users
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <div class="menu-toggle">
+                <label for="sidebar-toggle">
+                    <span class="las la-bars"></span>
+                </label>
+            </div>
+        </header>
+
+        <main>
+            <div class="page-header">
+                <div>
+                    <h1>Familytics Dashboard</h1>
+                    <small>All your data needs in one place</small>
+                </div>
+            </div>
+
+            <div class="cards">
+
+                <div class="single-card">
+                    <div class="card-single">
+                        <div class="card-flex">
+                            <div class="card-info">
+    
+                                <div class="card-head">
+                                    <span>Global overview</span>
+                                </div>
+                                <small>Total confirmed cases</small>
+                                <h2 class="total_Global_cases">69</h2>
+    
+                                <small>Total recovered cases</small>
+                                <h2 class="total_Global_recover">(╯°□°）╯</h2>
+    
+                                <small>Total deaths</small>
+                                <h2 class="total_Global_deaths">69</h2>
+    
+    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-single-encapsulation">
+                    <h2>Malaysia Overview</h2>
+                    <div class="double-cards">
+                        <div class="card-single">
+                            <div class="card-flex">
+                                <div class="card-info">
+                                    <div class="card-head">
+                                        <span>Total COVID-19 Cases (Malaysia)</span>
+                                    </div>
+                                    <small>Total confirmed cases</small>
+                                    <h2 class="total_Malaysia_cases">69</h2>
+                                    
+                                    <small>Total recovered cases</small>
+                                    <h2 class="total_Malaysia_recover">(╯°□°）╯</h2>
+                                    
+                                    <small>Total deaths</small>
+                                    <h2 class="total_Malaysia_deaths">69</h2>
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-single">
+                            <div class="card-flex">
+                                <div class="card-info">
+                                    <div class="card-head">
+                                        <span>Daily COVID-19 Cases (Malaysia)</span>
+                                    </div>
+
+                                    <small>New cases</small>
+                                    <h2 class="daily_Malaysia_cases">69</h2>
+        
+                                    <small>Recovered cases</small>
+                                    <h2 class="daily_Malaysia_recover">(╯°□°）╯</h2>
+        
+                                    <small>Deaths</small>
+                                    <h2 class="daily_Malaysia_deaths">69</h2>
+
+                                </div>
+                            </div>       
+                        </div>            
+                    </div>
+                    
+                    <div class="cards">
+                        <div class="card-single">
+                            <div class="card-flex">
+                                <div class="card-info">
+                                    <div class="card-head">
+                                        <span>Daily Cases (Malaysia)</span>
+                                    </div>
+                                    <div id="daily-cases-card">
+                                        <canvas id="daily-cases-chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="card-single">
+                            <div class="card-flex">
+                                <div class="card-info">
+                                    <div class="card-head">
+                                        <span>Total Deaths (Malaysia)</span>
+                                    </div>
+                                    <div id="death-cases-card">
+                                        <canvas id="death-cases-chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="card-single">
+                            <div class="card-flex">
+                                <div class="card-info">
+                                    <div class="card-head">
+                                        <span>VACCINATION STATUS (Malaysia)</span>
+                                    </div>
+                                    <div>
+                                        <canvas id="vaccination-status-card-piechart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="card-single">
+                            <div class="card-flex">
+                                <div class="card-info">
+                                    <div class="card-head">
+                                        <span>Total Cumulative Vaccinations (Malaysia)</span>
+                                    </div>
+                                    <div id="daily-cases-card">
+                                        <canvas id="total-cvaccinations-chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="card-single">
+                            <div class="card-flex">
+                                <div class="card-info">
+                                    <div class="card-head">
+                                        <span>Daily Vaccinations (Malaysia)</span>
+                                    </div>
+                                    <div id="daily-cases-card">
+                                        <canvas id="daily-vaccinations-chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <label for="sidebar-toggle" class="body-label"></label>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-auth.js"></script>
+    <script>
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyC5FkDBfo0r_BhE3rq_iFC6LMQJHLle3Uo",
+        authDomain: "fit2101-assignment.firebaseapp.com",
+        projectId: "fit2101-assignment",
+        storageBucket: "fit2101-assignment.appspot.com",
+        messagingSenderId: "458345927048",
+        appId: "1:458345927048:web:d6f471917c9bb3fa722a3d"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+    </script>
+
+    <script src="js/share.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>
